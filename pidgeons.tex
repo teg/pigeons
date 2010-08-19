@@ -1,0 +1,181 @@
+\documentclass[a4paper,10pt,leqno]{article}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[noxy]{virginialake}
+
+\usepackage[pdftex]{hyperref}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{para}[theorem]{}
+
+\title{Polynomial Proof of the Pigeon Hole Principle}
+
+\author{Lutz and Tom}
+
+\begin{document}
+
+\maketitle
+
+\newcommand{\fff  }{{\mathsf{f}}}
+\newcommand{\ttt  }{{\mathsf{t}}}
+\newcommand{\ai   }{{\mathsf{ai}}}
+\newcommand{\aw   }{{\mathsf{aw}}}
+\newcommand{\ac   }{{\mathsf{ac}}}
+\newcommand{\aid  }{{\ai{\downarrow}}}
+\newcommand{\awd  }{{\aw{\downarrow}}}
+\newcommand{\acd  }{{\ac{\downarrow}}}
+\newcommand{\aiu  }{{\ai{\uparrow}}}
+\newcommand{\awu  }{{\aw{\uparrow}}}
+\newcommand{\acu  }{{\ac{\uparrow}}}
+\newcommand{\swi  }{\mathsf{s}}
+\newcommand{\med  }{\mathsf{m}}
+\newcommand{\asor }{{=_\mathsf{a}{\downarrow}}}
+\newcommand{\asand}{{=_\mathsf{a}{\uparrow}}}
+\newcommand{\coor }{{=_{\vee\mathsf{c}}}}
+\newcommand{\coand}{{=_{\wedge\mathsf{c}}}}
+\newcommand{\fffd }{{{=_{\fff}}{\downarrow}}}
+\newcommand{\fffu }{{{=_{\fff}}{\uparrow}}}
+\newcommand{\tttd }{{{=_{\ttt}}{\downarrow}}}
+\newcommand{\tttu }{{{=_{\ttt}}{\uparrow}}}
+\newcommand{\tttord }{{{=_{\ttt\vee}}{\downarrow}}}
+\newcommand{\fffandd }{{{=_{\fff\wedge}}{\downarrow}}}
+\newcommand{\tttoru }{{{=_{\ttt\vee}}{\uparrow}}}
+\newcommand{\fffandu }{{{=_{\fff\wedge}}{\uparrow}}}
+
+\newcommand{\AND}[2]{\bigwedge_{#1}^{#2}}
+\newcommand{\OR}[2]{\bigvee_{#1}^{#2}}
+
+\newcommand{\Count}[2]{\mathsf{Count}(\overrightarrow{#1}^{#2})}
+\newcommand{\PHP}[1]{\mathsf{PHP}_{#1}}
+
+\begin{definition}
+This is the intuitive meaning of the atoms and predicates we will use:
+\begin{itemize}
+ \item $p_{i,j}$: pigeon $i$ is in hole $j$;
+ \item $r_j^m\leftrightarrow\OR{i=0}{m}p_{i,j}$: one of the first $m+1$ pigeons is in hole $j$;
+ \item $\Count{r}{m}$: the number of holes inhabited by one of the first $m+1$ pigeons; and
+ \item $\PHP{n}$: if there are $n+1$ pigeons and $n$ holes, and every pigeon is in a hole, then there is a hole with two pigeons.
+\end{itemize}
+\end{definition}
+
+
+\begin{lemma}\label{lem:at-most-full}
+At most all the ($n$) holes are inhabited by all the ($n+1$) pigeons.
+\[
+\vlproof{}{}{n\geq\Count{r}{n+1}}
+\]
+\end{lemma}
+
+\begin{lemma}\label{lem:no-pigeon:PHP}
+If the first pigeon is not in a hole, then the pigeon hole principle holds.
+\[
+\vlder{}{}{\PHP{n}}{0\geq\Count{r}{0}}
+\]
+\end{lemma}
+
+\begin{lemma}\label{lem:not-increasing:PHP}
+If adding one pigeon does not increase the number of holes inhabited, then there is a hole with two pigeons, so the pigeon hole principle holds.
+\[
+\vlder{}{}{\PHP{n}}{\Count{r}{m}\geq\Count{r}{m+1}}
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemmas~\ref{lem:not-increasing:no-new-hole_subtract}, \ref{lem:no-new-hole:PHP} and \ref{lem:subtract:contradiction}.
+\end{proof}
+
+\begin{lemma}\label{lem:bound:not-increasing_bound}
+If at most $m$ holes are inhabeted by the first $m+1$ pigeons, then either adding the $m+1^\text{st}$ pigeon did not increase the number of holes inhabited, or it did, and at most $m-1$ holes are inhabited by the first $m$ pigeons.
+\[
+\vlder{}{}
+{
+  \vls
+  [
+    \Count{r}{m-1}\geq\Count{r}{m}
+  \;.\;
+    (m-1)\geq\Count{r}{m-1}
+  ]
+}
+{
+  m\geq\Count{r}{m}
+}
+\]
+\end{lemma}
+
+\begin{lemma}\label{lem:no-new-hole:PHP}
+If no hole that was not inhabited by the first $m+1$ pigeons is inhabited by the first $m+2$ pigeons, then there is a hole with two pigeons, so the pigeon hole principle holds.
+\[
+\vlder{}{}{\PHP{n}}{\AND{j=0}{n-1}\vlsbr[r_j^m.\bar r_j^{m+1}]}
+\]
+\end{lemma}
+
+\begin{proof}
+\[
+\vlderivation
+{
+  \vlde{}{\{\awd\}}
+  {
+    \PHP{n}
+  }
+  {
+    \vlde{}{\{\swi\}}
+    {
+      \vls[\OR{j=0}{m}\OR{j=0}{n-1}\vlsbr(p_{i,j}.p_{m+1,j})\;.\;\AND{j=0}{n-1}\bar p_{m+1,j}]
+    }
+    {
+      \vlhy
+      {
+	\AND{j=0}{n-1}
+	\left(
+	  \vlder{}{\swi}
+	  {
+	    \vls[\OR{i=0}{m}\vlsbr(p_{i,j}.p_{m+1,j}).\vlinf{}{}{\bar p_{m+1,j}}{\vls[\bar p_{m+1,j}.\bar p_{m+1,j}]}]
+	  }
+	  {
+	    \vls[\OR{i=0}{m}\vlsbr(p_{i,j}.\vlinf{}{}{\vls[p_{m+1,j}.\bar p_{m+1,j}]}{\ttt}).(\vlinf{}{}{\ttt}{\bar r_j^m}\;.\;\bar p_{m+1,j})]
+	  }
+	\right)
+      }
+    }
+  }
+}
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:subtract:contradiction}
+For a hole that was inhabited by the first $m+1$ pigeons to not be inhabited by the first $m+2$ pigeons, is a contradiction.
+\[
+  \vlder{}{}{\fff}{\OR{j=0}{n-1}\vlsbr(r_j^m.\bar r_j^{m+1})}
+\]
+\end{lemma}
+
+\begin{proof}
+\[
+  \OR{j=0}{n-1}\vlsbr(\vlinf{}{}{\fff}{\vls(r_j^m.\bar r_j^m)}\;.\;\vlinf{}{}{\ttt}{\bar p_{m+1,j}})
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:not-increasing:no-new-hole_subtract}
+If adding the $m+2^\text{nd}$ pigeon did not increase the number of inhabited holes, then either every hole inhabited by one of the $m+2$ first pigeons was also inhabited by one of the $m+1$ first pigeons, or there is a hole that was inhabited by one of the first $m+1$ pigeons, but is not inhabited by one of the first $m+2$ pigeons.
+
+\[
+  \vlder{}{}{\vlsbr[\AND{j=0}{n-1}\vlsbr[r_j^m.\bar r_j^{m+1}].\OR{j=0}{n-1}\vlsbr(r_j^m.\bar r_j^{m+1})]}{\Count{r}{m}\geq\Count{r}{m+1}}
+\]
+\end{lemma}
+
+\end{document}
