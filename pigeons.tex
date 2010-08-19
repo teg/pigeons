@@ -62,7 +62,7 @@
 \newcommand{\AND}[2]{\bigwedge_{#1}^{#2}}
 \newcommand{\OR}[2]{\bigvee_{#1}^{#2}}
 
-\newcommand{\Count}[2]{\mathsf{Count}(\overrightarrow{#1}^{#2})}
+\newcommand{\Count}{\mathsf{Count}}
 \newcommand{\PHP}[1]{\mathsf{PHP}_{#1}}
 
 \begin{definition}
@@ -70,7 +70,7 @@ This is the intuitive meaning of the atoms and predicates we will use:
 \begin{itemize}
  \item $p_{i,j}$: pigeon $i$ is in hole $j$;
  \item $r_j^m\leftrightarrow\OR{i=0}{m}p_{i,j}$: one of the first $m+1$ pigeons is in hole $j$;
- \item $\Count{r}{m}$: the number of holes inhabited by one of the first $m+1$ pigeons; and
+ \item $\Count(r_0^m,\dots,r_{n-1}^m)$: the number of holes inhabited by one of the first $m+1$ pigeons; and
  \item $\PHP{n}$: if there are $n+1$ pigeons and $n$ holes, and every pigeon is in a hole, then there is a hole with two pigeons.
 \end{itemize}
 \end{definition}
@@ -79,8 +79,8 @@ This is the intuitive meaning of the atoms and predicates we will use:
 \begin{lemma}\label{lem:at-most-full}
 At most all the ($n$) holes are inhabited by all the ($n+1$) pigeons.
 \[
-\vlproof{}{}{n\geq\Count{r}{n+1}}
-\]
+\vlproof{}{}{n\geq\Count(r_0^m,\dots,r_{n-1}^n)}
+\quad.\]
 \end{lemma}
 
 \begin{lemma}\label{lem:no-pigeon:PHP}
@@ -93,8 +93,8 @@ If the first pigeon is not in a hole, then the pigeon hole principle holds.
 \begin{lemma}\label{lem:not-increasing:PHP}
 If adding one pigeon does not increase the number of holes inhabited, then there is a hole with two pigeons, so the pigeon hole principle holds.
 \[
-\vlder{}{}{\PHP{n}}{\Count{r}{m}\geq\Count{r}{m+1}}
-\]
+\vlder{}{}{\PHP{n}}{\Count(r_0^m,\dots,r_{n-1}^m)\geq\Count(r_0^{m+1},\dots,r_{n-1}^{m+1})}
+\quad.\]
 \end{lemma}
 
 \begin{proof}
@@ -108,13 +108,13 @@ If at most $m$ holes are inhabeted by the first $m+1$ pigeons, then either addin
 {
   \vls
   [
-    \Count{r}{m-1}\geq\Count{r}{m}
+    \Count{r}{m-1}\geq\Count(r_0^m,\dots,r_{n-1}^m)
   \;.\;
     (m-1)\geq\Count{r}{m-1}
   ]
 }
 {
-  m\geq\Count{r}{m}
+  m\geq\Count(r_0^m,\dots,r_{n-1}^m)
 }
 \]
 \end{lemma}
