@@ -87,7 +87,7 @@ At most all the ($n$) holes are inhabited by all the ($n+1$) pigeons.
 If the first pigeon is not in a hole, then the pigeon hole principle holds.
 \[
 \vlder{}{}{\PHP{n}}{0\geq\Count{r}{0}}
-\]
+\quad.\]
 \end{lemma}
 
 \begin{lemma}\label{lem:not-increasing:PHP}
@@ -116,14 +116,14 @@ If at most $m$ holes are inhabeted by the first $m+1$ pigeons, then either addin
 {
   m\geq\Count(r_0^m,\dots,r_{n-1}^m)
 }
-\]
+\quad.\]
 \end{lemma}
 
 \begin{lemma}\label{lem:no-new-hole:PHP}
 If no hole that was not inhabited by the first $m+1$ pigeons is inhabited by the first $m+2$ pigeons, then there is a hole with two pigeons, so the pigeon hole principle holds.
 \[
 \vlder{}{}{\PHP{n}}{\AND{j=0}{n-1}\vlsbr[r_j^m.\bar r_j^{m+1}]}
-\]
+\quad.\]
 \end{lemma}
 
 \begin{proof}
@@ -156,20 +156,20 @@ If no hole that was not inhabited by the first $m+1$ pigeons is inhabited by the
     }
   }
 }
-\]
+\quad.\]
 \end{proof}
 
 \begin{lemma}\label{lem:subtract:contradiction}
 For a hole that was inhabited by the first $m+1$ pigeons to not be inhabited by the first $m+2$ pigeons, is a contradiction.
 \[
   \vlder{}{}{\fff}{\OR{j=0}{n-1}\vlsbr(r_j^m.\bar r_j^{m+1})}
-\]
+\quad.\]
 \end{lemma}
 
 \begin{proof}
 \[
   \OR{j=0}{n-1}\vlsbr(\vlinf{}{}{\fff}{\vls(r_j^m.\bar r_j^m)}\;.\;\vlinf{}{}{\ttt}{\bar p_{m+1,j}})
-\]
+\quad.\]
 \end{proof}
 
 \begin{lemma}\label{lem:not-increasing:no-new-hole_subtract}
