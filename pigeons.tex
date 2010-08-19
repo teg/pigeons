@@ -218,9 +218,46 @@ By induction and Lemmas~\ref{lem:basics} and \ref{lem:CSAdd4}.
 
 \newcommand{\Add}{\mathsf{Add}}
 
+\begin{lemma}
+Some basic results
+\begin{itemize}\label{lem:basics}
+ \item
 \[
-  \vlder{}{}{\vlsbr[\AND{j=0}{n-1}\vlsbr[r_j^m.\bar r_j^{m+1}].\OR{j=0}{n-1}\vlsbr(r_j^m.\bar r_j^{m+1})]}{\Count{r}{m}\geq\Count{r}{m+1}}
+\vlproof{}{}{\Add(a,b)=\Add(b,a)}
+\quad,\]
+ \item
+\[
+\vlder{}{}{\Add(a_1,a_2)\leq\Add(b_1,b_2)}{\vls(a_1\leq b_1.a_2\leq b_2)}
+\quad,\quad\text{and}\]
+\item
+\[
+\vlder{}{}{\Add(a_1,a_2)<\Add(b_1,b_2)}{\vls(a_1\leq b_1.a_2< b_2)}
+\]
+\end{itemize}
+\end{lemma}
+
+\newcommand{\AddCarryF}{\mathsf{AddCarry4}}
+\newcommand{\AddSaveF}{\mathsf{AddSave4}}
+
+\begin{lemma}\label{lem:CSAdd4}
+Carry-save addition is correct with respect to normal addition
+\[
+\vlproof{}{}
+{
+\Add(\AddCarryF(a,b,c,d),\AddSaveF(a,b,c,d))=\Add(\Add(a,b),\Add(c,d))
+}
 \]
 \end{lemma}
 
+% AddCarry(as,bs,cs)=zipWith3 xor as bs cs
+% AddSave(as,bs,cs)=zipWith3
+%
+% CountCarry(a_1) = \fff
+% CountCarry(as++bs) = AddCarry4(CountCarry(as),CountSave(as),CountCarry(bs),CountSave(bs))
+% CountSave(a_1) = a_1
+% CountSave(as++bs) = AddSave4(CountCarry(as),CountSave(as),CountCarry(bs),CountSave(bs))
+%
+% Count(a_1,\dots,a_n) = Add(CountCarry(a_1,\dots,a_n),CountSave(a_1,\dots,a_n))
+
 \end{document}
+
