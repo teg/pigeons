@@ -129,7 +129,14 @@ Carry-save addition is correct with respect to normal addition
 \]
 \end{lemma}
 
-All the above definitions and results are only there to prove the following (so whatever is not needed can be changed or removed):
+All the above definitions and results are only there to prove the following two results (so whatever is not needed can be changed or removed):
+
+\begin{lemma}\label{lem:at-most-full}
+$\Count$ is bounded by its number of arguments
+\[
+\vlproof{}{}{n\geq\Count(a_1,\dots,a_n)}
+\quad.\]
+\end{lemma}
 
 \begin{lemma}\label{lem:push-comparisons-one-step}
 Given two sets of atoms, if the count of the first set is greater than the count of the second set, then either the count of the first half of the first set is greater than the count of the first half of the second set, or the count of the second half of the first set is greater than the count of the second half of the second set.
@@ -279,17 +286,10 @@ If adding one pigeon does not increase the number of holes inhabited, then there
 By Lemmas~\ref{lem:no-new-hole:PHP}, \ref{lem:subtract:contradiction} and \ref{lem:not-increasing:no-new-hole_subtract}.
 \end{proof}
 
-\begin{lemma}\label{lem:at-most-full}
-At most all the ($n$) holes are inhabited by all the ($n+1$) pigeons.
-\[
-\vlproof{}{}{n\geq\Count(r_0^m,\dots,r_{n-1}^n)}
-\quad.\]
-\end{lemma}
-
 \begin{lemma}\label{lem:no-pigeon:PHP}
 If the first pigeon is not in a hole, then the pigeon hole principle holds.
 \[
-\vlder{}{}{\PHP{n}}{0\geq\Count(r_0^m,\dots,r_{n-1}^n)}
+\vlder{}{}{\PHP{n}}{0\geq\Count(r_0^0,\dots,r_{n-1}^0)}
 \quad.\]
 \end{lemma}
 
@@ -315,7 +315,7 @@ If at most $m$ holes are inhabeted by the first $m+1$ pigeons, then either addin
 Given $n$ pigeons and $n-1$ pigeon holes, if every pigeon is in a hole, then there is a hole with two pigeons.
 \[
 \vlproof{}{}{\PHP{n}}
-\]\quad.
+\quad.\]
 \end{theorem}
 
 \begin{proof}
