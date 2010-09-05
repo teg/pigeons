@@ -127,7 +127,6 @@ Definitions of some predicates:
 %
 % Count(a_1,\dots,a_n) = Add(CountCarry(a_1,\dots,a_n),CountSave(a_1,\dots,a_n))
 
-
 \begin{lemma}\label{lem:CSAdd4}
 Carry-save addition is correct with respect to normal addition
 \[
@@ -150,6 +149,37 @@ $\Count$ is bounded by its number of arguments
 \vlproof{}{}{n\geq\Count(a_1,\dots,a_n)}
 \quad.\]
 \end{lemma}
+
+\begin{proof}
+By induction. The base case is:
+\[
+\vlproof{}{}{1\geq\Count(a)}
+\quad.
+\]
+The inductive case is:
+\[
+\vlderivation
+{
+  \vlde{}{}
+  {
+    n\geq\Count(a_1,\dots,a_n)
+  }
+  {
+    \vlde{}{}
+    {
+      \Add(n/2,n/2)\geq\Add(\Count(a_1,\dots,a_{n/2}),\Count(a_{n/2+1},\dots,a_n))
+    }
+    {
+      \vlhy
+      {
+	\vls(n/2\geq\Count(a_1,\dots,a_{n/2}).n/2\geq\Count(a_{n/2+1},\dots,a_n))
+      }
+    }
+  }
+}
+\quad.
+\]
+\end{proof}
 
 \begin{lemma}\label{lem:push-comparisons-one-step}
 Given two sets of atoms, if the count of the first set is greater than the count of the second set, then either the count of the first half of the first set is greater than the count of the first half of the second set, or the count of the second half of the first set is greater than the count of the second half of the second set.
