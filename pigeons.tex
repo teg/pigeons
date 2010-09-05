@@ -202,7 +202,43 @@ Given atoms $a_1$, $\dots$, $a_{2^\rho}$ and $b_1$, $\dots$, $b_{2^\rho}$, the f
 \end{lemma}
 
 \begin{proof}
-By Lemmas~\ref{lem:basics} and \ref{lem:CSAdd4}.
+By Lemmas~\ref{lem:basics} and \ref{lem:CSAdd4}:
+\[
+\vlderivation{
+  \vlde{\Phi_3}{}
+  {
+    \vls
+    [
+      \Count(a_1, \dots, a_{2^{\rho-1}})>\Count(b_1, \dots, b_{2^{\rho-1}})
+    .
+      \Count(a_{2^{\rho-1}+1}, \dots, a_{2^\rho})>\Count(b_{2^{\rho-1}+1}, \dots, b_{2^\rho})
+    ]
+  }
+  {
+    \vlde{\Phi_2}{}
+    {
+      \Add(\Count(a_1, \dots, a_{2^{\rho-1}}),\Count(a_{2^{\rho-1}+1}, \dots, a_{2^\rho}))>\Add(\Count(b_1, \dots, b_{2^{\rho-1}}),\Count(b_{2^{\rho-1}+1}, \dots, b_{2^\rho}))
+    }
+    {
+      \vlde{\Phi_1}{}
+      {
+	\Add(\Count(a_1, \dots, a_{2^{\rho-1}}),\Count(a_{2^{\rho-1}+1}, \dots, a_{2^\rho}))>\Count(b_1, \dots, b_{2^\rho})
+      }
+      {
+	\vlhy
+	{
+	  \Count(a_1, \dots, a_{2^\rho})>\Count(b_1, \dots, b_{2^\rho})
+	}
+      }
+    }
+  }
+}
+\quad.\]
+\begin{itemize}
+ \item $\Phi_1$ relies on: $\vlder{}{}{\vls[a_1>b_1.a_2>b_2]}{\Add(a_1,a_2)>\Add(b_1,b_2)}$;
+ \item $\Phi_2$ relies on: $\vlder{}{}{\vls(a>b.b=c)}{a>c}\;$ and Lemma~\ref{lem:count-decomp}; and
+ \item $\Phi_3$ relies on: $\vlder{}{}{\vls(b>a.b=c)}{c>a}\;$ and Lemma~\ref{lem:count-decomp}.
+\end{itemize}
 \end{proof}
 
 \begin{definition}
