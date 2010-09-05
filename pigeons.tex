@@ -74,17 +74,26 @@ We will encode numbers by sequences of formulae. When we define operations on nu
 \begin{lemma}\label{lem:basics}
 Some basic results
 \begin{enumerate}
+%  \item
+% \[
+% \vlproof{}{}{\Add(a,b)=\Add(b,a)}
+% \quad,\]
+% \item
+% \[
+% \vlder{}{}{\Add(a_1,a_2)<\Add(b_1,b_2)}{\vls(a_1\leq b_1.a_2< b_2)}
+% \]
  \item
 \[
-\vlproof{}{}{\Add(a,b)=\Add(b,a)}
-\quad,\]
+\vlder{}{}{\vls(a>b.b=c)}{a>c}
+\]
  \item
 \[
-\vlder{}{}{\Add(a_1,a_2)\leq\Add(b_1,b_2)}{\vls(a_1\leq b_1.a_2\leq b_2)}
+\vlder{}{}{\vls(b>a.b=c)}{c>a}
 \quad,\quad\text{and}\]
-\item
+ \item
 \[
-\vlder{}{}{\Add(a_1,a_2)<\Add(b_1,b_2)}{\vls(a_1\leq b_1.a_2< b_2)}
+\vlder{}{}{\vls[a_1> b_1.a_2> b_2]}{\Add(a_1,a_2)>\Add(b_1,b_2)}
+\quad.
 \]
 \end{enumerate}
 \end{lemma}
@@ -127,6 +136,10 @@ Carry-save addition is correct with respect to normal addition
 \Add(\AddCarryF(a,b,c,d),\AddSaveF(a,b,c,d))=\Add(\Add(a,b),\Add(c,d))
 }
 \]
+\end{lemma}
+
+\begin{lemma}\label{lem:count-decomp}
+\[\vlproof{}{}{\Add(\Count(\vec b_1), \Count(\vec b_2))=\Count(\vec b_1,\vec b_2)}\]
 \end{lemma}
 
 All the above definitions and results are only there to prove the following two results (so whatever is not needed can be changed or removed):
